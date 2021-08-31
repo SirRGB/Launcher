@@ -10,6 +10,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
 	var finalFibonacci = -1
+	var listOfFibonacci = arrayListOf<Int>()
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 		var startwert = 0
 		var nachfolger = 1
 		var i = 0
-		var listOfFibonacci = arrayListOf(fibonacci)
+		listOfFibonacci = arrayListOf(fibonacci)
 
 		while(i < maxCount) {
 			listOfFibonacci.add(fibonacci)
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
 		}
 		intent.putExtra("test",finalFibonacci.toString())
+		intent.putIntegerArrayListExtra("ALL_THE_FIBONACCIS",listOfFibonacci)
 		startActivity(intent)
 	}
 }

@@ -13,13 +13,15 @@ class EngineerActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_engineer)
 		//MESSAGE getIntent().getStringExtra("key")
 		//var extras = intent.getIntExtra()
-		var globalinput = intent.getStringExtra("test")
-		System.out.println(globalinput)
+		val globalinput = intent.getStringExtra("test")
+		val fibonacciArray = intent.getIntegerArrayListExtra("ALL_THE_FIBONACCIS")
+		val random = Math.floor(Math.random() * 42069) + 1
 
+		// Array Adapter
         val arrayAdapter: ArrayAdapter<*>
         val users = arrayOf(
             globalinput, "Rohit Sharma", "Steve Smith",
-            "Kane Williamson", "Ross Taylor"
+            "Kane Williamson", "Ross Taylor", fibonacciArray, random
         )
         var mListView = findViewById<ListView>(R.id.listView)
 		arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
