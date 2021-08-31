@@ -1,17 +1,21 @@
 package com.sirrgb.launcher
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 		calculateFibonacci(5)
-		val intent = Intent(this,EngineerActivity::class.java)
-		startActivity(intent)
+		val startButton = findViewById<Button>(R.id.start)
+		startButton.setOnClickListener() {
+			goTo()
+		}
 	}
 
 	fun calculateFibonacci(maxCount: Int) {
@@ -29,5 +33,10 @@ class MainActivity : AppCompatActivity() {
 			nachfolger = fibonacci
 			i++
 		}
+	}
+
+	private fun goTo() {
+		val intent = Intent(this,EngineerActivity::class.java)
+		startActivity(intent)
 	}
 }
