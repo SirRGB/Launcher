@@ -3,10 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Liam/Downloads/Launcher/app/src/main/res/layout/activity_engineer.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/Liam/Downloads/Launcher/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/Ragetime/AndroidStudioProjects/Launcher/app/src/main/res/layout/activity_engineer.xml" value="0.20989583333333334" />
-        <entry key="..\:/Users/Ragetime/AndroidStudioProjects/Launcher/app/src/main/res/layout/activity_main.xml" value="0.20885416666666667" />
-        <entry key="..\:/Users/Ragetime/AndroidStudioProjects/Launcher/app/src/main/res/layout/activity_malware.xml" value="0.20989583333333334" />
       </map>
     </option>
   </component>

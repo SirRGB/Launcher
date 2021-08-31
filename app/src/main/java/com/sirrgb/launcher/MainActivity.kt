@@ -1,5 +1,6 @@
 package com.sirrgb.launcher
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +10,8 @@ class MainActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 		calculateFibonacci(5)
+		val intent = Intent(this,EngineerActivity::class.java)
+		startActivity(intent)
 	}
 
 	fun calculateFibonacci(maxCount: Int) {
