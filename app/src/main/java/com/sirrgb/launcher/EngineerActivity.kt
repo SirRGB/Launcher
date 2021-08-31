@@ -17,12 +17,17 @@ class EngineerActivity : AppCompatActivity() {
 		val fibonacciArray = intent.getIntegerArrayListExtra("ALL_THE_FIBONACCIS")
 		val random = Math.floor(Math.random() * 42069) + 1
 
+
 		// Array Adapter
         val arrayAdapter: ArrayAdapter<*>
-        val users = arrayOf(
+        val users = arrayListOf(
             globalinput, "Rohit Sharma", "Steve Smith",
             "Kane Williamson", "Ross Taylor", fibonacciArray, random
         )
+		fibonacciArray!!.forEach { fibonacci ->
+			users.add(fibonacci)
+		}
+
         var mListView = findViewById<ListView>(R.id.listView)
 		arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
 		mListView.adapter = arrayAdapter
