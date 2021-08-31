@@ -5,13 +5,23 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	tools:context=".MainActivity"
-	android:background="#FF5722">
+	android:background="#FF5722"
+	android:orientation="horizontal">
 
 	<Button
 		android:id="@+id/start"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:text="Start" />
+		android:text="@string/start" />
+
+	<TextView
+		android:id="@+id/textView"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="@string/launcher"
+		android:visibility="visible"
+		tools:visibility="visible" />
 
 </LinearLayout>
