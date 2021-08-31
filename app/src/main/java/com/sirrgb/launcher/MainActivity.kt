@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
-		calculateFibonacci(5)
+		calculateFibonacci(50)
 		val startButton = findViewById<Button>(R.id.start)
 		startButton.setOnClickListener() {
 			goTo()
@@ -26,21 +26,18 @@ class MainActivity : AppCompatActivity() {
 		var fibonacci = 1
 		var startwert = 0
 		var nachfolger = 1
-		var i = 0
-		listOfFibonacci = arrayListOf(fibonacci)
+		var i = 0			// Counting variable
+		listOfFibonacci = arrayListOf(startwert, fibonacci)
 
 		while(i < maxCount) {
-			listOfFibonacci.add(fibonacci)
-			//System.out.println(listOfFibonacci)
 			fibonacci = startwert + nachfolger
 			startwert = nachfolger
 			nachfolger = fibonacci
+			listOfFibonacci.add(fibonacci)
 			finalFibonacci = fibonacci
+			System.out.println(listOfFibonacci)
 			i++
-
-			//finde größte Fibonacci Zahl
 		}
-		//System.out.println(finalFibonacci)
 	}
 
 	private fun goTo() {

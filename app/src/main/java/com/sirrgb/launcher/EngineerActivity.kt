@@ -22,10 +22,13 @@ class EngineerActivity : AppCompatActivity() {
         val arrayAdapter: ArrayAdapter<*>
         val users = arrayListOf(
             globalinput, "Rohit Sharma", "Steve Smith",
-            "Kane Williamson", "Ross Taylor", fibonacciArray, random
+            "Kane Williamson", "Ross Taylor", random
         )
 		fibonacciArray!!.forEach { fibonacci ->
-			users.add(fibonacci)
+			if(fibonacci >= 2) {
+				users.add(fibonacci)
+			}
+
 		}
 
         var mListView = findViewById<ListView>(R.id.listView)
