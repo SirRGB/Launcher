@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
-		calculateFibonacci(50)
+		calculateFibonacci(15)
 		val startButton = findViewById<Button>(R.id.start)
 		startButton.setOnClickListener() {
 			goTo()
