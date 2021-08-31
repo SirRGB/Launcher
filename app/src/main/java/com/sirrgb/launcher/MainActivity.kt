@@ -8,6 +8,8 @@ import android.widget.Button
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+	var finalFibonacci = -1
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
@@ -27,16 +29,24 @@ class MainActivity : AppCompatActivity() {
 
 		while(i < maxCount) {
 			listOfFibonacci.add(fibonacci)
-			System.out.println(listOfFibonacci)
+			//System.out.println(listOfFibonacci)
 			fibonacci = startwert + nachfolger
 			startwert = nachfolger
 			nachfolger = fibonacci
+			finalFibonacci = fibonacci
 			i++
+
+			//finde größte Fibonacci Zahl
 		}
+		//System.out.println(finalFibonacci)
 	}
 
 	private fun goTo() {
-		val intent = Intent(this,EngineerActivity::class.java)
+		val intent = Intent(this,EngineerActivity::class.java).apply {
+			//intent.putExtra("MESSAGE",finalFibonacci)
+
+		}
+		intent.putExtra("test",finalFibonacci.toString())
 		startActivity(intent)
 	}
 }
