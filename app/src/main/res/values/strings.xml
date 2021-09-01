@@ -4,4 +4,5 @@
 	<string name="launcher">Launcher</string>
 	<string name="biggestFibonacciNum">Biggest Fibonacci Number</string>
 	<string name="maxCount">Maximal count</string>
+	<string name="gmmeg">Fibonacci Numbers Array List</string>
 </resources>

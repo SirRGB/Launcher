@@ -2,12 +2,13 @@ package com.sirrgb.launcher
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.widget.Button
-import java.util.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,12 +27,13 @@ class MainActivity : AppCompatActivity() {
 
 		if (sharedFibonacci.contains(existString) && sharedFibonacci.getInt(getString(R.string.maxCount), -1) == maxCount) {
 			println("String exists :thumbsup:")
-
+			// save JSON string to SharedPreferences
 
 		} else {
 			println("Can't find the value, let's do some calculation")
 			calculateFibonacci(maxCount)
 		}
+
 		val startButton = findViewById<Button>(R.id.start)
 		startButton.setOnClickListener() {
 			goTo()
@@ -64,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 			putInt(getString(R.string.biggestFibonacciNum),finalFibonacci)
 			putInt(getString(R.string.maxCount), maxCount)
 			apply()
+			saveArrayList(listOfFibonacci, getString(R.string.gmmeg))
 		}
 	}
 
@@ -76,7 +79,8 @@ class MainActivity : AppCompatActivity() {
 		intent.putIntegerArrayListExtra("ALL_THE_FIBONACCIS",listOfFibonacci)
 		startActivity(intent)
 	}
-	fun saveArrayList(list: ArrayList<String?>?, key: String?) {
+
+	fun saveArrayList(list: ArrayList<Int>, key: String?) {
 		val prefs = getPreferences(Context.MODE_PRIVATE)
 		val editor = prefs.edit()
 		val gson = Gson()
@@ -85,11 +89,11 @@ class MainActivity : AppCompatActivity() {
 		editor.apply()
 	}
 
-	fun getArrayList(key: String?): ArrayList<String?>? {
+	fun getArrayList(key: String?): ArrayList<Int?>? {
 		val prefs = getPreferences(Context.MODE_PRIVATE)
 		val gson = Gson()
 		val json = prefs.getString(key, null)
-		val type= object : TypeToken<ArrayList<String?>?>() {}.type
-		return gson.fromJson
+		val type = object : TypeToken<ArrayList<Int?>?>() {}.type
+		return gson.fromJson(json, type)
 	}
 }
