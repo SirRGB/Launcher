@@ -2,8 +2,10 @@ package com.sirrgb.launcher
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.widget.Button
 import java.util.*
 
@@ -20,13 +22,12 @@ class MainActivity : AppCompatActivity() {
 		val existString = getString(R.string.biggestFibonacciNum)
 		val maxCount = 15
 
-		println(sharedFibonacci.contains(existString))
+		println("Contains ${sharedFibonacci.contains(existString)} && getInt ${sharedFibonacci.getInt(getString(R.string.maxCount), -1)}")
 
 		if (sharedFibonacci.contains(existString) && sharedFibonacci.getInt(getString(R.string.maxCount), -1) == maxCount) {
 			println("String exists :thumbsup:")
-			/*if () {
-				println("Value exists, proceeding to doing nothing")
-			}*/
+
+
 		} else {
 			println("Can't find the value, let's do some calculation")
 			calculateFibonacci(maxCount)
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity() {
 		with (sharedFibonacci.edit()){
 			putInt(getString(R.string.biggestFibonacciNum),finalFibonacci)
 			putInt(getString(R.string.maxCount), maxCount)
+			apply()
 		}
 	}
 
@@ -73,5 +75,21 @@ class MainActivity : AppCompatActivity() {
 		intent.putExtra("test",finalFibonacci.toString())
 		intent.putIntegerArrayListExtra("ALL_THE_FIBONACCIS",listOfFibonacci)
 		startActivity(intent)
+	}
+	fun saveArrayList(list: ArrayList<String?>?, key: String?) {
+		val prefs = getPreferences(Context.MODE_PRIVATE)
+		val editor = prefs.edit()
+		val gson = Gson()
+		val json: String = gson.toJson(list)
+		editor.putString(key, json)
+		editor.apply()
+	}
+
+	fun getArrayList(key: String?): ArrayList<String?>? {
+		val prefs = getPreferences(Context.MODE_PRIVATE)
+		val gson = Gson()
+		val json = prefs.getString(key, null)
+		val type= object : TypeToken<ArrayList<String?>?>() {}.type
+		return gson.fromJson
 	}
 }
