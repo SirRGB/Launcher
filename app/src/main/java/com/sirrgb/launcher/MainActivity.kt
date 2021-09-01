@@ -1,6 +1,6 @@
 package com.sirrgb.launcher
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +15,14 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
-		calculateFibonacci(15)
+
+		val sharedFibonacci = getPreferences(Context.MODE_PRIVATE)
+		val existString = getString(R.string.biggestFibonacciNum)
+		if (sharedFibonacci.contains(existString))  {
+
+		} else {
+			calculateFibonacci(15)
+		}
 		val startButton = findViewById<Button>(R.id.start)
 		startButton.setOnClickListener() {
 			goTo()
@@ -37,6 +44,16 @@ class MainActivity : AppCompatActivity() {
 			finalFibonacci = fibonacci
 			System.out.println(listOfFibonacci)
 			i++
+		}
+
+		shareFibonacci(maxCount)
+	}
+
+	fun shareFibonacci(maxCount: Int) {
+		val sharedFibonacci = getPreferences(Context.MODE_PRIVATE)
+		with (sharedFibonacci.edit()){
+			putInt(getString(R.string.biggestFibonacciNum),finalFibonacci)
+			putInt(getString(R.string.maxCount), maxCount)
 		}
 	}
 

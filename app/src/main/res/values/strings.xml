@@ -2,4 +2,6 @@
 	<string name="app_name">Launcher</string>
 	<string name="start">Start</string>
 	<string name="launcher">Launcher</string>
+	<string name="biggestFibonacciNum">Biggest Fibonacci Number</string>
+	<string name="maxCount">Maximal count</string>
 </resources>
