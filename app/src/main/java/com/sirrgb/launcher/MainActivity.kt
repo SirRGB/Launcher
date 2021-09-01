@@ -23,10 +23,13 @@ class MainActivity : AppCompatActivity() {
 		val existString = getString(R.string.biggestFibonacciNum)
 		val maxCount = 15
 
-		println("Contains ${sharedFibonacci.contains(existString)} && getInt ${sharedFibonacci.getInt(getString(R.string.maxCount), -1)}")
+		println("Contains ${sharedFibonacci.contains(existString)} && getInt ${sharedFibonacci.getInt(getString(R.string.maxCount), -1)} && ${sharedFibonacci.contains(getString(R.string.gmmeg))}")
 
-		if (sharedFibonacci.contains(existString) && sharedFibonacci.getInt(getString(R.string.maxCount), -1) == maxCount) {
+		if (sharedFibonacci.contains(existString) && sharedFibonacci.getInt(getString(R.string.maxCount), -1) == maxCount && sharedFibonacci.contains(getString(R.string.gmmeg))) {
 			println("String exists :thumbsup:")
+			listOfFibonacci = getArrayList(getString(R.string.gmmeg))
+			finalFibonacci = sharedFibonacci.getInt(getString(R.string.biggestFibonacciNum), -1)
+
 			// save JSON string to SharedPreferences
 
 		} else {
@@ -89,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 		editor.apply()
 	}
 
-	fun getArrayList(key: String?): ArrayList<Int?>? {
+	fun getArrayList(key: String?): ArrayList<Int> {
 		val prefs = getPreferences(Context.MODE_PRIVATE)
 		val gson = Gson()
 		val json = prefs.getString(key, null)
