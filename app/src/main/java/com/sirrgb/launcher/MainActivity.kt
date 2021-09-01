@@ -18,10 +18,12 @@ class MainActivity : AppCompatActivity() {
 
 		val sharedFibonacci = getPreferences(Context.MODE_PRIVATE)
 		val existString = getString(R.string.biggestFibonacciNum)
-		if (sharedFibonacci.contains(existString))  {
+		val maxCount = 5
 
+		if (sharedFibonacci.contains(existString) && sharedFibonacci.getInt(getString(R.string.maxCount), -1) == maxCount) {
+			//use stored value
 		} else {
-			calculateFibonacci(15)
+			calculateFibonacci(maxCount)
 		}
 		val startButton = findViewById<Button>(R.id.start)
 		startButton.setOnClickListener() {
