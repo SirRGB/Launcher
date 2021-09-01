@@ -18,11 +18,17 @@ class MainActivity : AppCompatActivity() {
 
 		val sharedFibonacci = getPreferences(Context.MODE_PRIVATE)
 		val existString = getString(R.string.biggestFibonacciNum)
-		val maxCount = 5
+		val maxCount = 15
+
+		println(sharedFibonacci.contains(existString))
 
 		if (sharedFibonacci.contains(existString) && sharedFibonacci.getInt(getString(R.string.maxCount), -1) == maxCount) {
-			//use stored value
+			println("String exists :thumbsup:")
+			/*if () {
+				println("Value exists, proceeding to doing nothing")
+			}*/
 		} else {
+			println("Can't find the value, let's do some calculation")
 			calculateFibonacci(maxCount)
 		}
 		val startButton = findViewById<Button>(R.id.start)
