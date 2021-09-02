@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.content.Intent.ACTION_MAIN
+import android.content.Intent.CATEGORY_LAUNCHER
+import android.content.pm.PackageManager
 import android.widget.ArrayAdapter
 import android.widget.ListView
 
@@ -35,5 +38,16 @@ class EngineerActivity : AppCompatActivity() {
         var mListView = findViewById<ListView>(R.id.listView)
 		arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
 		mListView.adapter = arrayAdapter
+
+		getAllMainActivities()
 	}
+
+	fun getAllMainActivities() {
+		val intent = Intent(ACTION_MAIN)
+		var query = packageManager.queryIntentActivities(intent, PackageManager.MATCH_ALL)
+		intent.addCategory(CATEGORY_LAUNCHER)
+
+		query!!.forEach { query ->
+			println(query.resolvePackageName)
+		}
 }
