@@ -1,5 +1,6 @@
 package com.sirrgb.launcher
 
+import android.content.ComponentName
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.content.Intent
 import android.content.Intent.ACTION_MAIN
 import android.content.Intent.CATEGORY_LAUNCHER
 import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.widget.ArrayAdapter
 import android.widget.ListView
 
@@ -19,13 +21,19 @@ class EngineerActivity : AppCompatActivity() {
 		val globalinput = intent.getStringExtra("test")
 		val fibonacciArray = intent.getIntegerArrayListExtra("ALL_THE_FIBONACCIS")
 		val random = Math.floor(Math.random() * 42069) + 1
+		var appList = getAllMainActivities()
+		appList!!.forEach{ app ->
+			println(app.loadLabel(packageManager))
+			var activityInfo = app.activityInfo
+			println(ComponentName(activityInfo.packageName,activityInfo.name))
+		}
 
 
 		// Array Adapter
         val arrayAdapter: ArrayAdapter<*>
         val users = arrayListOf(
             globalinput, "Rohit Sharma", "Steve Smith",
-            "Kane Williamson", "Ross Taylor", random
+            "Kane Williamson", "Ross Taylor", random, appList
         )
 		fibonacciArray!!.forEach { fibonacci ->
 			if(fibonacci >= 2) {
@@ -42,12 +50,20 @@ class EngineerActivity : AppCompatActivity() {
 		getAllMainActivities()
 	}
 
-	fun getAllMainActivities() {
+	fun getAllMainActivities(): MutableList<ResolveInfo> {
 		val intent = Intent(ACTION_MAIN)
-		var query = packageManager.queryIntentActivities(intent, PackageManager.MATCH_ALL)
 		intent.addCategory(CATEGORY_LAUNCHER)
+		var query = packageManager.queryIntentActivities(intent, 0)
 
+		fibonacciArray!!.forEach { fibonacci ->
+			if(fibonacci >= 2) {
+				users.add(fibonacci)
+			}
+
+		println("exitst ${query}")
 		query!!.forEach { query ->
-			println(query.resolvePackageName)
+			println("app list ${query.resolvePackageName}")
 		}
+		return query
+	}
 }
