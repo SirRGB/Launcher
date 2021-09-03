@@ -10,4 +10,5 @@ class LauncherEntry(var label: CharSequence,val icon: Drawable,var componentName
 	init {
 		start.component = componentName
 	}
+	val name = label
 }
